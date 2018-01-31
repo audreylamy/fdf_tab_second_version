@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 11:49:43 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/31 16:58:18 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/31 17:12:51 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct	s_env
 	void *mlx;
 	void *win;
 	t_img img;
+	t_map *map;
 	int new_move_y;
 	int new_move_x;
 }				t_env;
@@ -93,22 +94,22 @@ t_map *ft_begin_parse(char **argv);
 t_points **ft_stock_points(char *line, int index, t_points ***points, t_lines *elts);
 
 /*IMAGE*/
-void ft_create_image(t_map *map, t_env *tmp);
-void ft_create_new_image(t_map *map, t_env *tmp);
+void ft_create_image(t_env *tmp);
+void ft_create_new_image(t_env *tmp);
 void fill_pixel(t_env *tmp, int x, int y, int color);
 
 /*BRESENHAM*/
-void ft_transform_map(t_map *map, t_env *tmp);
-void ft_draw_line_horiz(t_map *map, t_env *tmp);
-void ft_draw_line_vertical(t_map *map, t_env *tmp);
-void print_horiz_line(t_map * map, t_env *tmp, int i, int j);
-void print_vertical_line(t_map * map, t_env *tmp, int i, int j);
+void ft_transform_map(t_env *tmp);
+void ft_draw_line_horiz(t_env *tmp);
+void ft_draw_line_vertical(t_env *tmp);
+void print_horiz_line(t_env *tmp, int i, int j);
+void print_vertical_line(t_env *tmp, int i, int j);
 void ft_bresenham(int x0, int y0, int x1, int y1, t_env *tmp);
 void ft_bresenham1(t_algob *b, t_env *tmp, int x0, int y0);
 void ft_bresenham2(t_algob *b, t_env *tmp, int x0, int y0);
 
 /*EVENT*/
-int my_key_funct(int keycode, t_env *tmp, t_map *map);
+int my_key_funct(int keycode, t_env *tmp);
 
 /*MATRIX*/
 typedef struct s_vecteur4
@@ -151,7 +152,7 @@ matrix4_t  matrix_rotationX(float alpha);
 matrix4_t  matrix_rotationY(float alpha);
 matrix4_t  matrix_rotationZ(float alpha);
 t_vecteur4 create_vecteur4(int x, int y, int z, int w);
-t_vecteur4 ft_transformation(int x, int y, int z, int w, int i, t_map *map);
+t_vecteur4 ft_transformation(int x, int y, int z, int w, int i);
 t_vecteur4 ft_cal_translation(t_vecteur4 vecteur2, matrix4_t matrix_translation);
 t_vecteur4 ft_cal_rotationX(t_vecteur4 vecteur, matrix4_t matrix_rotationX);
 t_vecteur4 ft_cal_rotationY(t_vecteur4 vecteur, matrix4_t matrix_rotationY);

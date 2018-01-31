@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:15:41 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/31 09:57:06 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/31 17:14:32 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_bresenham1(t_algob *b, t_env *tmp, int x0, int y0)
 			res = res - b->nb_pix_x;
 			y0 = y0 + b->incY;
 		}
-		fill_pixel(tmp, x0, y0, 0x00FFFF);
+		fill_pixel(tmp, x0 + tmp->new_move_x, y0 + tmp->new_move_y, 0x00FFFF);
 		i++;
 	}
 }
@@ -49,7 +49,7 @@ void	ft_bresenham2(t_algob *b, t_env *tmp, int x0, int y0)
 			res = res - b->nb_pix_y;
 			x0 = x0 + b->incX;
 		}
-		fill_pixel(tmp, x0, y0, 0x00FFFF);
+		fill_pixel(tmp, x0 + tmp->new_move_x, y0 + tmp->new_move_y, 0x00FFFF);
 		i++;
 	}
 }
