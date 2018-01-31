@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 11:49:43 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/31 17:12:51 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/31 18:33:27 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # define TILE_HEIGHT 25
 # define PI 3.14159265359
 
+/*DEFINE EVENTS*/
+# define SCROLL_UP 4
+# define SCROLL_DOWN 5
+# define CLIC_RIGHT 2
+# define CLIC_LEFT 1
+# define CLIC_MIDDLE 3
 # define RIGHT 124
 # define LEFT 123
 # define UP 126
@@ -82,6 +88,7 @@ typedef struct	s_env
 	t_map *map;
 	int new_move_y;
 	int new_move_x;
+
 }				t_env;
 
 /*PARSING*/
@@ -89,7 +96,7 @@ int main(int argc, char **argv);
 int ft_nb_line(char **argv);
 int	ft_getnbr(char *str);
 int ft_lenght(char **str);
-void ft_print_tab(t_map *map);
+void ft_print_tab(t_env *tmp);
 t_map *ft_begin_parse(char **argv);
 t_points **ft_stock_points(char *line, int index, t_points ***points, t_lines *elts);
 
@@ -110,6 +117,8 @@ void ft_bresenham2(t_algob *b, t_env *tmp, int x0, int y0);
 
 /*EVENT*/
 int my_key_funct(int keycode, t_env *tmp);
+int my_mouse_funct(int keycode, t_env *tmp);
+
 
 /*MATRIX*/
 typedef struct s_vecteur4
@@ -148,6 +157,7 @@ typedef union
 matrix4_t  matrix4(t_matrix m);
 matrix4_t  matrix_identity(void);
 matrix4_t  matrix_translation_center(t_vecteur4 vecteur);
+matrix4_t  matrix_homothetie(t_vecteur4 homo);
 matrix4_t  matrix_rotationX(float alpha);
 matrix4_t  matrix_rotationY(float alpha);
 matrix4_t  matrix_rotationZ(float alpha);
@@ -157,6 +167,12 @@ t_vecteur4 ft_cal_translation(t_vecteur4 vecteur2, matrix4_t matrix_translation)
 t_vecteur4 ft_cal_rotationX(t_vecteur4 vecteur, matrix4_t matrix_rotationX);
 t_vecteur4 ft_cal_rotationY(t_vecteur4 vecteur, matrix4_t matrix_rotationY);
 t_vecteur4 ft_cal_rotationZ(t_vecteur4 vecteur, matrix4_t matrix_rotationZ);
+t_vecteur4 ft_cal_homothetie(t_vecteur4 vecteur, matrix4_t matrix_homothetie);
 void ft_print_matrix(matrix4_t matrix);
+
+/*NEW_EVENTS*/
+void ft_transformation_event(t_env *tmp);
+t_vecteur4 ft_translation_event(int x, int y, int z, int w, int i);
+t_vecteur4 ft_homothetie_event(int x, int y, int z, int w, int i);
 
 #endif

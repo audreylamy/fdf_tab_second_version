@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 14:09:40 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/31 17:10:01 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/31 17:24:51 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	// ft_print_tab(parse);
 	ft_create_image(&tmp);
 	mlx_key_hook(tmp.win, my_key_funct, &tmp);
+	mlx_mouse_hook(tmp.win, my_mouse_funct, &tmp);
 	mlx_loop(tmp.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 13:47:27 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/31 09:51:12 by alamy            ###   ########.fr       */
+/*   Updated: 2018/01/31 18:27:43 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,18 @@ matrix4_t  matrix_rotationX(float angle)
 		 0, cos(angle), -sin(angle), 0,
 		 0, sin(angle), cos(angle), 0,
 		 0, 0, 0, 1}
+    );
+}
+
+/*MATRICE TRANSLATION*/
+
+matrix4_t  matrix_homothetie(t_vecteur4 homo)
+{
+    return matrix4((t_matrix)
+		{homo.x1, 0, 0, 0,
+		 0, homo.y1, 0, 0,
+		 0, 0, homo.z1, 0,
+		 0, 0, 0, homo.w1}
     );
 }
 
