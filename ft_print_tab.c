@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 17:18:55 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/31 17:51:28 by alamy            ###   ########.fr       */
+/*   Updated: 2018/02/02 12:40:57 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    ft_print_tab(t_env *tmp)
 
     i = 0;
     j = 0;
-    while (i < tmp->map->nb_line)
+    while (i < tmp->nb_line)
 	{
         j = 0;
 		while (j < tmp->map->lines[i]->lenght)

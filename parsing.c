@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 10:19:16 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/31 16:36:05 by alamy            ###   ########.fr       */
+/*   Updated: 2018/02/02 12:40:43 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_map *ft_begin_parse(char **argv)
 	
 	index = 0;
 	map = (t_map*)malloc(sizeof(t_map));
-	map->nb_line = ft_nb_line(argv);
+	// map->nb_line = ft_nb_line(argv);
 	map->lines = (t_lines**)malloc(sizeof(t_lines) * ft_nb_line(argv));
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)

@@ -6,30 +6,18 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 11:49:43 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/31 18:33:27 by alamy            ###   ########.fr       */
+/*   Updated: 2018/02/02 12:39:13 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # define BUFF_SIZE 32
-# define WINDOW_L 800
-# define WINDOW_H 600
+# define WINDOW_L 1500
+# define WINDOW_H 1000
 # define TILE_WIDTH 25
 # define TILE_HEIGHT 25
 # define PI 3.14159265359
-
-/*DEFINE EVENTS*/
-# define SCROLL_UP 4
-# define SCROLL_DOWN 5
-# define CLIC_RIGHT 2
-# define CLIC_LEFT 1
-# define CLIC_MIDDLE 3
-# define RIGHT 124
-# define LEFT 123
-# define UP 126
-# define DOWN 125
-# define EXIT 53
 
 # include "minilibx/mlx.h"
 # include <string.h>
@@ -40,6 +28,24 @@
 # include <fcntl.h>
 # include <math.h>
 # include "libft/libft.h"
+
+/*DEFINE EVENTS KEY FUNCT*/
+# define RIGHT 124
+# define LEFT 123
+# define UP 126
+# define DOWN 125
+# define ROTATION_X_UP 91
+# define ROTATION_X_DOWN 84
+# define ROTATION_Z_RIGHT 88
+# define ROTATION_Z_LEFT 86
+# define EXIT 53
+
+/*DEFINE EVENTS MOUSE FUNCT*/
+# define SCROLL_UP 4
+# define SCROLL_DOWN 5
+# define CLIC_RIGHT 2
+# define CLIC_LEFT 1
+# define CLIC_MIDDLE 3
 
 typedef struct s_points
 {
@@ -59,7 +65,7 @@ typedef struct s_lines
 typedef struct	s_map
 {
 	t_lines **lines;
-	int nb_line;
+	// int nb_line;
 }				t_map;
 
 typedef struct	s_algob
@@ -67,7 +73,7 @@ typedef struct	s_algob
 	int		nb_pix_x;
 	int		nb_pix_y;
 	int		incX;
-	int		incY; //icrementation
+	int		incY; //incrementation
 }				t_algob;
 
 typedef struct	s_img
@@ -88,7 +94,7 @@ typedef struct	s_env
 	t_map *map;
 	int new_move_y;
 	int new_move_x;
-
+	int nb_line;
 }				t_env;
 
 /*PARSING*/
@@ -161,6 +167,7 @@ matrix4_t  matrix_homothetie(t_vecteur4 homo);
 matrix4_t  matrix_rotationX(float alpha);
 matrix4_t  matrix_rotationY(float alpha);
 matrix4_t  matrix_rotationZ(float alpha);
+matrix4_t  matrix_projection(float angle, float ratio, float near, float far); 
 t_vecteur4 create_vecteur4(int x, int y, int z, int w);
 t_vecteur4 ft_transformation(int x, int y, int z, int w, int i);
 t_vecteur4 ft_cal_translation(t_vecteur4 vecteur2, matrix4_t matrix_translation);
@@ -168,11 +175,15 @@ t_vecteur4 ft_cal_rotationX(t_vecteur4 vecteur, matrix4_t matrix_rotationX);
 t_vecteur4 ft_cal_rotationY(t_vecteur4 vecteur, matrix4_t matrix_rotationY);
 t_vecteur4 ft_cal_rotationZ(t_vecteur4 vecteur, matrix4_t matrix_rotationZ);
 t_vecteur4 ft_cal_homothetie(t_vecteur4 vecteur, matrix4_t matrix_homothetie);
+t_vecteur4 ft_cal_projection(t_vecteur4 vecteur, matrix4_t matrix_homothetie);
 void ft_print_matrix(matrix4_t matrix);
 
-/*NEW_EVENTS*/
-void ft_transformation_event(t_env *tmp);
-t_vecteur4 ft_translation_event(int x, int y, int z, int w, int i);
+/*NEW_EVENTS_TRANSFORMATION*/
+void ft_transformation_event(t_env *tmp, int keycode);
+t_vecteur4 ft_rotationx1(int x, int y, int z, int w, int i);
+t_vecteur4 ft_rotationx2(int x, int y, int z, int w, int i);
+t_vecteur4 ft_rotationz1(int x, int y, int z, int w, int i);
+t_vecteur4 ft_rotationz2(int x, int y, int z, int w, int i);
 t_vecteur4 ft_homothetie_event(int x, int y, int z, int w, int i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: alamy <alamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 13:47:27 by alamy             #+#    #+#             */
-/*   Updated: 2018/01/31 18:27:43 by alamy            ###   ########.fr       */
+/*   Updated: 2018/02/02 10:55:45 by alamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,6 @@ matrix4_t  matrix_rotationX(float angle)
     );
 }
 
-/*MATRICE TRANSLATION*/
-
-matrix4_t  matrix_homothetie(t_vecteur4 homo)
-{
-    return matrix4((t_matrix)
-		{homo.x1, 0, 0, 0,
-		 0, homo.y1, 0, 0,
-		 0, 0, homo.z1, 0,
-		 0, 0, 0, homo.w1}
-    );
-}
-
 matrix4_t  matrix_rotationY(float angle)
 {
     return matrix4((t_matrix)
@@ -87,6 +75,40 @@ matrix4_t  matrix_rotationZ(float angle)
 		 0, 0, 1, 0,
 		 0, 0, 0, 1}
     );
+}
+
+/*MATRICE HOMOTHETIE*/
+
+matrix4_t  matrix_homothetie(t_vecteur4 homo)
+{
+    return matrix4((t_matrix)
+		{homo.x1, 0, 0, 0,
+		 0, homo.y1, 0, 0,
+		 0, 0, homo.z1, 0,
+		 0, 0, 0, homo.w1}
+    );
+}
+
+/*MATRICE PROJECTION*/
+
+matrix4_t matrix_projection(float angle, float ratio, float near, float far) 
+{
+	float f;
+	float r;
+	float nd;
+	float fd;
+
+	f = 1 / tan(angle / 2);
+	r = ratio;
+	nd = near;
+	fd = far;
+	
+	return matrix4((t_matrix)
+		 {f / r,          0,                0,                0,
+		 0,                f,                0,                0,
+		 0,                0,               (-fd-nd)/(nd-fd),  (2*fd*nd)/(nd-fd),
+		 0,                0,                1,                0}
+	);
 }
 
 t_vecteur4 create_vecteur4(int x, int y, int z, int w)
